@@ -9,12 +9,11 @@
 $response = array();
 
 // check for required fields
-//if (isset($_POST['name']) && isset($_POST['number']) && isset($_POST['town']) && isset($_POST['sex']) && isset($_POST['trailer']) && isset($_POST['slalom']) && isset($_POST['drag'])) {
-if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['description'])) {
+if (isset($_POST['name']) && isset($_POST['number']) && isset($_POST['town']) && isset($_POST['sex']) && isset($_POST['trailer']) && isset($_POST['slalom']) && isset($_POST['drag'])) {
     
     $name = $_POST['name'];
-    $price = $_POST['price'];
-	$description = $_POST['description'];
+    $number = $_POST['number'];
+	$town = $_POST['town'];
     $sex = $_POST['sex'];
 	$trailer = $_POST['trailer'];
 	$slalom = $_POST['slalom'];
@@ -27,18 +26,18 @@ if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['description
     $db = new DB_CONNECT();
 
     // mysql inserting a new row
-    $result = mysql_query("INSERT INTO adatok(rajt, name, varos, nem, potkocsi, szlalom, gyorsulas) VALUES('$number', '$name', '$town', '$sex', '$trailer', '$slalom', '$drag')");
+    $result = mysql_query("INSERT INTO adatok(rajt, nev, varos, nem, potkocsi, szlalom, gyorsulas) VALUES('$number', '$name', '$town', '$sex', '$trailer', '$slalom', '$drag')");
 
 	if($trailer == "true") {
-		mysql_query("INSERT INTO potkocsi(rajt, name, ido, hiba, vido) VALUES('$number', '$name', '9:99:999', '99', '9:99:999')");
+		mysql_query("INSERT INTO potkocsi(rajt, nev, ido, hiba, vido) VALUES('$number', '$name', '9:99:999', '99', '9:99:999')");
 	}
 	
 	if($slalom == "true") {
-		mysql_query("INSERT INTO szlalom(rajt, name, ido, hiba, vido) VALUES('$number', '$name', '9:99:999', '99', '9:99:999')");
+		mysql_query("INSERT INTO szlalom(rajt, nev, ido, hiba, vido) VALUES('$number', '$name', '9:99:999', '99', '9:99:999')");
 	}
 	
 	if($drag == "true") {
-		mysql_query("INSERT INTO gyorsulas(rajt, name, ido1, ido2, lido) VALUES('$number', '$name', '9:99:999', '9:99:999', '9:99:999')");
+		mysql_query("INSERT INTO gyorsulas(rajt, nev, ido1, ido2, lido) VALUES('$number', '$name', '9:99:999', '9:99:999', '9:99:999')");
 	}
 	
     // check if row inserted or not
