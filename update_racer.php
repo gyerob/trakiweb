@@ -21,8 +21,27 @@ if (isset($_POST['name']) && isset($_POST['number']) && isset($_POST['town']) &&
     $db = new DB_CONNECT();
 
     // mysql update row with matched number
-    $result = mysql_query("UPDATE adatok SET nev = '$name', varos = '$town', nem = '$sex', potocsi = '$trailer', szlalom = '$slalom', gyorsulas = '$drag' WHERE rajt = $number");
-
+    $result = mysql_query("UPDATE adatok SET nev = '$name', varos = '$town', nem = '$sex', potkocsi = '$trailer', szlalom = '$slalom', gyorsulas = '$drag' WHERE rajt = $number");
+	
+	if($trailer == "true") {
+		mysql_query("INSERT INTO potkocsi(rajt, nev, ido, hiba, vido) VALUES('$number', '$name', '9:99:999', '99', '9:99:999')");
+	} else {
+		mysql_query("DELETE FROM potkocsi WHERE rajt = $number");
+	}
+		
+	if($slalom == "true") {
+		mysql_query("INSERT INTO szlalom(rajt, nev, ido, hiba, vido) VALUES('$number', '$name', '9:99:999', '99', '9:99:999')");
+	} else {
+		mysql_query("DELETE FROM szlalom WHERE rajt = $number");
+	}
+		
+	if($drag == "true") {
+		mysql_query("INSERT INTO gyorsulas(rajt, nev, ido1, ido2, lido) VALUES('$number', '$name', '9:99:999', '9:99:999', '9:99:999')");
+	} else {
+		mysql_query("DELETE FROM gyorsulas WHERE rajt = $number");
+	}
+	
+	
     // check if row inserted or not
     if ($result) {
         // successfully updated

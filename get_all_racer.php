@@ -1,9 +1,5 @@
 <?php
 
-/*
- * Following code will list all the products
- */
-
 // array for JSON response
 $response = array();
 
@@ -14,27 +10,28 @@ require_once __DIR__ . '/db_connect.php';
 // connecting to db
 $db = new DB_CONNECT();
 
-// get all products from products table
+// get all racers from racers table
 $result = mysql_query("SELECT *FROM adatok") or die(mysql_error());
 
 // check for empty result
 if (mysql_num_rows($result) > 0) {
     // looping through all results
-    // products node
-    $response["products"] = array();
+    // racers node
+    $response["racers"] = array();
     
     while ($row = mysql_fetch_array($result)) {
         // temp user array
-        $product = array();
-        $product["pid"] = $row["pid"];
-        $product["name"] = $row["name"];
-        $product["price"] = $row["rajt"];
-        $product["description"] = $row["varos"];
+        $racers = array();
+        $racers["rajt"] = $row["rajt"];
+        $racers["nev"] = $row["nev"];
+        $racers["varos"] = $row["varos"];
+        $racers["nem"] = $row["nem"];
+		$racers["potkocsi"] = $row["potkocsi"];
+		$racers["szlalom"] = $row["szlalom"];
+		$racers["gyorsulas"] = $row["gyorsulas"];
 
-
-
-        // push single product into final response array
-        array_push($response["products"], $product);
+        // push single racers into final response array
+        array_push($response["racers"], $racers);
     }
     // success
     $response["success"] = 1;
@@ -42,9 +39,9 @@ if (mysql_num_rows($result) > 0) {
     // echoing JSON response
     echo json_encode($response);
 } else {
-    // no products found
+    // no racers found
     $response["success"] = 0;
-    $response["message"] = "No products found";
+    $response["message"] = "No racers found";
 
     // echo no users JSON
     echo json_encode($response);

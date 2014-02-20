@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Following code will list all the products
+ * Following code will list all the slalom
  */
 
 // array for JSON response
@@ -14,27 +14,26 @@ require_once __DIR__ . '/db_connect.php';
 // connecting to db
 $db = new DB_CONNECT();
 
-// get all products from products table
-$result = mysql_query("SELECT *FROM adatok") or die(mysql_error());
+// get all slalom from slalom table
+$result = mysql_query("SELECT *FROM szlalom ORDER BY vido") or die(mysql_error());
 
 // check for empty result
 if (mysql_num_rows($result) > 0) {
     // looping through all results
-    // products node
-    $response["products"] = array();
+    // slalom node
+    $response["slalom"] = array();
     
     while ($row = mysql_fetch_array($result)) {
         // temp user array
-        $product = array();
-        $product["pid"] = $row["pid"];
-        $product["name"] = $row["name"];
-        $product["price"] = $row["rajt"];
-        $product["description"] = $row["varos"];
+        $slalom = array();
+        $slalom["rajt"] = $row["rajt"];
+        $slalom["nev"] = $row["nev"];
+        $slalom["ido"] = $row["ido"];
+        $slalom["hiba"] = $row["hiba"];
+        $slalom["vido"] = $row["vido"];
 
-
-
-        // push single product into final response array
-        array_push($response["products"], $product);
+        // push single slalom into final response array
+        array_push($response["slalom"], $slalom);
     }
     // success
     $response["success"] = 1;
@@ -42,9 +41,9 @@ if (mysql_num_rows($result) > 0) {
     // echoing JSON response
     echo json_encode($response);
 } else {
-    // no products found
+    // no slalom found
     $response["success"] = 0;
-    $response["message"] = "No products found";
+    $response["message"] = "No slalomracers found";
 
     // echo no users JSON
     echo json_encode($response);
