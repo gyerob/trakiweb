@@ -10,10 +10,7 @@ require_once __DIR__ . '/db_connect.php';
 $db = new DB_CONNECT();
 
 // mysql update row with matched rajt
-$result = mysql_query("SELECT COUNT(*) FROM gyeredmeny");
-if($result <1) {
-	$result = mysql_query("INSERT INTO gyeredmeny (nev, rajt) SELECT nev, rajt FROM gyorsulas ORDER BY lido LIMIT 10");
-}
+$result = mysql_query("CALL gytop10()");
 
 // check if row inserted or not
 if ($result) {
@@ -26,5 +23,4 @@ if ($result) {
 } else {
         
 }
-
 ?>
