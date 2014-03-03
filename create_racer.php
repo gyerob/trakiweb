@@ -1,10 +1,5 @@
 <?php
 
-/*
- * Following code will create a new product row
- * All product details are read from HTTP Post Request
- */
-
 // array for JSON response
 $response = array();
 

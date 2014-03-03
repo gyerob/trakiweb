@@ -25,7 +25,6 @@ if (mysql_num_rows($result) > 0) {
         $racers["rajt"] = $row["rajt"];
         $racers["nev"] = $row["nev"];
         $racers["nyert"] = $row["nyert"];
-		$racers["pid"] = $row["pid"];
 
         // push single racers into final response array
         array_push($response["racers"], $racers);
@@ -38,7 +37,6 @@ if (mysql_num_rows($result) > 0) {
         $racers["rajt"] = $row["rajt"];
         $racers["nev"] = $row["nev"];
         $racers["nyert"] = $row["nyert"];
-		$racers["pid"] = $row["pid"];
 
         // push single racers into final response array
         array_push($response["racers"], $racers);
@@ -51,7 +49,6 @@ if (mysql_num_rows($result) > 0) {
         $racers["rajt"] = $row["rajt"];
         $racers["nev"] = $row["nev"];
         $racers["nyert"] = $row["nyert"];
-		$racers["pid"] = $row["pid"];
 
         // push single racers into final response array
         array_push($response["racers"], $racers);
@@ -64,7 +61,6 @@ if (mysql_num_rows($result) > 0) {
         $racers["rajt"] = $row["rajt"];
         $racers["nev"] = $row["nev"];
         $racers["nyert"] = $row["nyert"];
-		$racers["pid"] = $row["pid"];
 
         // push single racers into final response array
         array_push($response["racers"], $racers);
