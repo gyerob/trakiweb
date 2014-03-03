@@ -1,0 +1,21 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sztop10`()
+    MODIFIES SQL DATA
+begin
+declare i int;
+set i = 2;
+while i < 10 do
+    update szkor1 set 
+		rajt = (select rajt from szlalom order by vido limit 1 offset i),
+		nev = (select nev from szlalom order by vido limit 1 offset i)
+		where pid = i-1;
+    set i = i + 1;
+end while;
+update szkor3 set 
+		rajt = (select rajt from szlalom order by vido limit 1),
+		nev = (select nev from szlalom order by vido limit 1)
+		where pid = 2;
+update szkor3 set 
+		rajt = (select rajt from szlalom order by vido limit 1 offset 1),
+		nev = (select nev from szlalom order by vido limit 1 offset 1)
+		where pid = 3;
+end
