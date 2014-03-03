@@ -41,3 +41,98 @@ update szkor3 set
 		nev = (select nev from szlalom order by vido limit 1 offset 1)
 		where pid = 3;
 end
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `rangsorolszr1`()
+    MODIFIES SQL DATA
+begin
+declare i int;
+declare j int;
+declare name varchar(30);
+declare number int;
+declare pos int;
+set pos = 10;
+set i = (select count(*) from szkor1 where nyert < 2);
+if i = 4 then 
+	set j = i - 1;
+	while j > -1 do
+    	set name = (select nev from szkor1 where nyert < 2 order by pid limit 1 offset j);
+		set number = (select rajt from szkor1 where nyert < 2 order by pid limit 1 offset j);
+		update szeredmeny set nev = name, rajt = number where pid = pos;
+		set pos = pos - 1;
+		set j = j - 1;
+	end while;
+end if;
+end
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `rangsorolszr2`()
+    NO SQL
+begin
+declare i int;
+declare j int;
+declare name varchar(30);
+declare number int;
+declare pos int;
+declare num1 int;
+declare num2 int;
+set pos = 6;
+set i = (select count(*) from szkor2 where nyert < 2);
+if i = 2 then 
+	set num1 = (select rajt from szkor2 where nyert < 2 limit 1 offset 0);
+	set num2 = (select rajt from szkor2 where nyert < 2 limit 1 offset 1);
+
+	set j = i - 1;
+	while j > -1 do
+		
+    	set name = (select nev from szkor1 where (rajt = num1 or rajt = num2) order by pid limit 1 offset j);
+		set number = (select rajt from szkor1 where (rajt = num1 or rajt = num2) order by pid limit 1 offset j);
+		update szeredmeny set nev = name, rajt = number where pid = pos;
+		set pos = pos - 1;
+		set j = j - 1;
+	end while;
+end if;
+end
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `rangsorolszr4`()
+    NO SQL
+begin
+declare i int;
+declare name varchar(30);
+declare number int;
+set i = (select nyert from szkor4 where pid = 1);
+if i = 2 then
+	set name = (select nev from szkor4 where pid = 1);
+	set number = (select rajt from szkor4 where pid = 1);
+	update szeredmeny set nev = name, rajt = number where pid = 1;
+	
+	set name = (select nev from szkor4 where pid = 2);
+	set number = (select rajt from szkor4 where pid = 2);
+	update szeredmeny set nev = name, rajt = number where pid = 2;
+else 
+	set name = (select nev from szkor4 where pid = 2);
+	set number = (select rajt from szkor4 where pid = 2);
+	update szeredmeny set nev = name, rajt = number where pid = 1;
+	
+	set name = (select nev from szkor4 where pid = 1);
+	set number = (select rajt from szkor4 where pid = 1);
+	update szeredmeny set nev = name, rajt = number where pid = 2;
+end if;
+
+set i = (select nyert from szkor4 where pid = 3);
+if i = 2 then
+	set name = (select nev from szkor4 where pid = 3);
+	set number = (select rajt from szkor4 where pid = 3);
+	update szeredmeny set nev = name, rajt = number where pid = 3;
+	
+	set name = (select nev from szkor4 where pid = 4);
+	set number = (select rajt from szkor4 where pid = 4);
+	update szeredmeny set nev = name, rajt = number where pid = 4;
+else 
+	set name = (select nev from szkor4 where pid = 4);
+	set number = (select rajt from szkor4 where pid = 4);
+	update szeredmeny set nev = name, rajt = number where pid = 3;
+	
+	set name = (select nev from szkor4 where pid = 3);
+	set number = (select rajt from szkor4 where pid = 3);
+	update szeredmeny set nev = name, rajt = number where pid = 4;
+end if;
+end

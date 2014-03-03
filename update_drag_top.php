@@ -19,18 +19,18 @@ if (isset($_POST['rajt']) && isset($_POST['nev']) && isset($_POST['nyert']) && i
 
     // mysql update row with matched rajt
 	if ($kor == "1") {
-		$result = mysql_query("UPDATE szkor1 SET nev = '$nev', nyert = '$nyert' WHERE rajt = $rajt");
-		mysql_query("CALL rangsorolszr1()");
+		$result = mysql_query("UPDATE gykor1 SET nev = '$nev', nyert = '$nyert' WHERE rajt = $rajt");
+		mysql_query("CALL rangsorolgyr1()");
 	} else if ($kor == "2") {
-		$result = mysql_query("UPDATE szkor2 SET nev = '$nev', nyert = '$nyert' WHERE rajt = $rajt");
-		mysql_query("CALL rangsorolszr2()");
+		$result = mysql_query("UPDATE gykor2 SET nev = '$nev', nyert = '$nyert' WHERE rajt = $rajt");
+		mysql_query("CALL rangsorolgyr2()");
 	} else if ($kor == "3") {
-		$result = mysql_query("UPDATE szkor3 SET nev = '$nev', nyert = '$nyert' WHERE rajt = $rajt");
+		$result = mysql_query("UPDATE gykor3 SET nev = '$nev', nyert = '$nyert' WHERE rajt = $rajt");
 	} else if ($kor == "4") {
-		$result = mysql_query("UPDATE szkor4 SET nev = '$nev', nyert = '$nyert' WHERE rajt = $rajt");
-		mysql_query("CALL rangsorolszr4()");
+		$result = mysql_query("UPDATE gykor4 SET nev = '$nev', nyert = '$nyert' WHERE rajt = $rajt");
+		mysql_query("CALL rangsorolgyr4()");
 	} else {
-		$result = mysql_query("UPDATE szeredmeny SET nev = '$nev', nyert = '$nyert' WHERE rajt = $rajt");
+		$result = mysql_query("UPDATE gyeredmeny SET nev = '$nev', nyert = '$nyert' WHERE rajt = $rajt");
 	}
 
     // check if row inserted or not
