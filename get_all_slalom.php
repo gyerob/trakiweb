@@ -1,12 +1,7 @@
 <?php
 
-/*
- * Following code will list all the slalom
- */
-
 // array for JSON response
 $response = array();
-
 
 // include db connect class
 require_once __DIR__ . '/db_connect.php';
@@ -14,8 +9,24 @@ require_once __DIR__ . '/db_connect.php';
 // connecting to db
 $db = new DB_CONNECT();
 
-// get all slalom from slalom table
-$result = mysql_query("SELECT *FROM szlalom ORDER BY vido") or die(mysql_error());
+if (isset($_GET['type'])) {
+	$type = $_GET['type'];
+	if ($type == "veteran") {
+		$result = mysql_query("SELECT *FROM szlalom WHERE (rajt > 99) ORDER BY vido") or die(mysql_error());
+	} else if ($type == "modern") {
+		$result = mysql_query("SELECT *FROM szlalom WHERE (rajt < 100) ORDER BY vido") or die(mysql_error());
+	} else if ($type == "150le+") {
+		$result = mysql_query("SELECT *FROM szlalom WHERE (above150le = 'true') ORDER BY vido") or die(mysql_error());
+	} else if ($type == "150le-") {
+		$result = mysql_query("SELECT *FROM szlalom WHERE (above150le = 'false') ORDER BY vido") or die(mysql_error());
+	} else if ($type == "women") {
+		$result = mysql_query("SELECT *FROM szlalom WHERE (nem = 'true') ORDER BY vido") or die(mysql_error());
+	} else if ($type == "men") {
+		$result = mysql_query("SELECT *FROM szlalom WHERE (nem = 'false') ORDER BY vido") or die(mysql_error());
+	}
+} else {
+	$result = mysql_query("SELECT *FROM szlalom ORDER BY vido") or die(mysql_error());
+}
 
 // check for empty result
 if (mysql_num_rows($result) > 0) {
