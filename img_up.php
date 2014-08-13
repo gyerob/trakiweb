@@ -22,7 +22,7 @@ if (isset($base)) {
 	 
 	// binary, utf-8 bytes
 	header("Content-Type: bitmap; charset=utf-8");
-	$file = fopen("pics/gallery-images/" . $image_name, "wb");
+	$file = fopen("pics/galleries/" . $image_name, "wb");
 	fwrite($file, $binary);
 	fclose($file);
 	

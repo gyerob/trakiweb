@@ -14,6 +14,9 @@
 		<link rel="shortcut icon" href="bin/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="bin/style.css" />
 		<link rel="stylesheet" type="text/css" href="bin/font/SegoeUI.css" />
+		<link rel="stylesheet" type="text/css" href="bin/lightbox/lightbox.css" />
+		<script src="bin/lightbox/jquery-1.7.2.min.js"></script>
+		<script src="bin/lightbox/lightbox.js"></script>
 	</head>
 	<body>
 		<div id="container">

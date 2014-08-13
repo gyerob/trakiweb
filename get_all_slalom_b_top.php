@@ -6,7 +6,7 @@ require_once __DIR__ . '/db_connect.php';
 
 $db = new DB_CONNECT();
 
-$result = mysql_query("SELECT * FROM gykor1") or die(mysql_error());
+$result = mysql_query("SELECT * FROM szbkor1") or die(mysql_error());
 
 if (mysql_num_rows($result) > 0) {
     $response["racers"] = array();
@@ -21,7 +21,7 @@ if (mysql_num_rows($result) > 0) {
         array_push($response["racers"], $racers);
     }
 	
-	$result = mysql_query("SELECT * FROM gykor2") or die(mysql_error());
+	$result = mysql_query("SELECT * FROM szbkor2") or die(mysql_error());
 	while ($row = mysql_fetch_array($result)) {
         $racers = array();
         $racers["rajt"] = $row["rajt"];
@@ -32,7 +32,7 @@ if (mysql_num_rows($result) > 0) {
         array_push($response["racers"], $racers);
     }
 	
-	$result = mysql_query("SELECT * FROM gykor3") or die(mysql_error());
+	$result = mysql_query("SELECT * FROM szbkor3") or die(mysql_error());
 	while ($row = mysql_fetch_array($result)) {
         $racers = array();
         $racers["rajt"] = $row["rajt"];
@@ -43,7 +43,7 @@ if (mysql_num_rows($result) > 0) {
         array_push($response["racers"], $racers);
     }
 	
-	$result = mysql_query("SELECT * FROM gykor4") or die(mysql_error());
+	$result = mysql_query("SELECT * FROM szbkor4") or die(mysql_error());
 	while ($row = mysql_fetch_array($result)) {
         $racers = array();
         $racers["rajt"] = $row["rajt"];

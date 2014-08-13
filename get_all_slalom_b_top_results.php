@@ -6,18 +6,18 @@ require_once __DIR__ . '/db_connect.php';
 
 $db = new DB_CONNECT();
 
-$result = mysql_query("SELECT *FROM gyeredmeny ORDER BY pid") or die(mysql_error());
+$result = mysql_query("SELECT *FROM szberedmeny ORDER BY pid") or die(mysql_error());
 
 if (mysql_num_rows($result) > 0) {
-    $response["drag"] = array();
+    $response["slalom"] = array();
     
     while ($row = mysql_fetch_array($result)) {
-        $drag = array();
-        $drag["rajt"] = $row["rajt"];
-        $drag["nev"] = $row["nev"];
-        $drag["pid"] = $row["pid"];
+        $slalom = array();
+        $slalom["rajt"] = $row["rajt"];
+        $slalom["nev"] = $row["nev"];
+        $slalom["pid"] = $row["pid"];
 
-        array_push($response["drag"], $drag);
+        array_push($response["slalom"], $slalom);
     }
     $response["success"] = 1;
 

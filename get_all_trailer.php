@@ -8,13 +8,51 @@ $db = new DB_CONNECT();
 
 if (isset($_GET['type'])) {
 	$type = $_GET['type'];
-	if ($type == "veteran") {
-		$result = mysql_query("SELECT *FROM potkocsi WHERE (rajt > 99) ORDER BY vido") or die(mysql_error());
-	} else if ($type == "modern") {
-		$result = mysql_query("SELECT *FROM potkocsi WHERE (rajt < 100) ORDER BY vido") or die(mysql_error());
+	
+	if (isset($_GET['group'])) {
+		$group = $_GET['group'];
+		if ($group == 0) {
+			if ($type == "veteran") {
+				$result = mysql_query("SELECT *FROM potkocsi WHERE (rajt > 99) ORDER BY vido") or die(mysql_error());
+			} else if ($type == "modern") {
+				$result = mysql_query("SELECT *FROM potkocsi WHERE (rajt < 100) ORDER BY vido") or die(mysql_error());
+			}
+		} else if ($group == 1) {
+			if ($type == "veteran") {
+				$result = mysql_query("SELECT *FROM potkocsi WHERE (rajt > 99 AND csoport = '1') ORDER BY vido") or die(mysql_error());
+			} else if ($type == "modern") {
+				$result = mysql_query("SELECT *FROM potkocsi WHERE (rajt < 100 AND csoport = '1') ORDER BY vido") or die(mysql_error());
+			}
+		} else if ($group == 2) {
+			if ($type == "veteran") {
+				$result = mysql_query("SELECT *FROM potkocsi WHERE (rajt > 99 AND csoport = '2') ORDER BY vido") or die(mysql_error());
+			} else if ($type == "modern") {
+				$result = mysql_query("SELECT *FROM potkocsi WHERE (rajt < 100 AND csoport = '2') ORDER BY vido") or die(mysql_error());
+			}
+		}
+	} else {
+		if ($type == "veteran") {
+			$result = mysql_query("SELECT *FROM potkocsi WHERE (rajt > 99) ORDER BY vido") or die(mysql_error());
+		} else if ($type == "modern") {
+			$result = mysql_query("SELECT *FROM potkocsi WHERE (rajt < 100) ORDER BY vido") or die(mysql_error());
+		}
 	}
+	
+	
+	
 } else {
-	$result = mysql_query("SELECT *FROM potkocsi ORDER BY vido") or die(mysql_error());
+	if (isset($_GET['group'])) {
+		$group = $_GET['group'];
+		if ($group == 0) {
+			$result = mysql_query("SELECT *FROM potkocsi ORDER BY vido") or die(mysql_error());
+		} else if ($group == 1) {
+			$result = mysql_query("SELECT *FROM potkocsi WHERE (csoport = '1') ORDER BY vido") or die(mysql_error());
+		} else if ($group == 2) {
+			$result = mysql_query("SELECT *FROM potkocsi WHERE (csoport = '2') ORDER BY vido") or die(mysql_error());
+		}
+	} else {
+		$result = mysql_query("SELECT *FROM potkocsi ORDER BY vido") or die(mysql_error());
+	}
 }
 
 // check for empty result

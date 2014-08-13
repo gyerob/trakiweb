@@ -6,7 +6,7 @@ require_once __DIR__ . '/db_connect.php';
 
 $db = new DB_CONNECT();
 
-$result = mysql_query("CALL sztop10()");
+$result = mysql_query("CALL szatop10()");
 		
 if ($result) {
 	$response["success"] = 1;

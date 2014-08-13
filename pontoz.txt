@@ -1,0 +1,63 @@
+begin
+
+declare i int;
+declare j int;
+
+declare number int;
+declare rows int;
+
+UPDATE adatok SET abszolut = 0 WHERE pid > 0;
+
+#potkocsis
+set i = 0;
+set j = 10;
+
+set rows = (select count(*) from potkocsi);
+if rows > 10 then
+	set rows = 10;
+end if;
+
+while i < rows do
+	set number = (select rajt from potkocsi where (rajt < 100) group by rajt order by vido limit 1 offset i);
+	UPDATE adatok SET abszolut = j WHERE rajt = number;
+	set i = i + 1;
+	set j = j - 1;
+end while;
+
+
+#gyorsulas
+set i = 0;
+set j = 10;
+
+while i < 10 do
+	set number = (select rajt from gyeredmeny limit 1 offset i);
+	UPDATE adatok SET abszolut = j WHERE rajt = number;
+	set i = i + 1;
+	set j = j - 1;
+end while;
+
+
+#szlalom150-
+set i = 0;
+set j = 10;
+
+while i < 10 do
+	set number = (select rajt from szberedmeny limit 1 offset i);
+	UPDATE adatok SET abszolut = j WHERE rajt = number;
+	set i = i + 1;
+	set j = j - 1;
+end while;
+
+
+#szlalom 150+
+set i = 0;
+set j = 10;
+
+while i < 10 do
+	set number = (select rajt from szaeredmeny limit 1 offset i);
+	UPDATE adatok SET abszolut = j WHERE rajt = number;
+	set i = i + 1;
+	set j = j - 1;
+end while;
+
+end

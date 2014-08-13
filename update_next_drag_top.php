@@ -4,7 +4,7 @@
 $response = array();
 
 // check for required fields
-if (isset($_POST['rajt']) && isset($_POST['nev']) && isset($_POST['kor']) && isset($_POST['pid'])) {
+if (isset($_POST['rajt']) && isset($_POST['nev']) && isset($_POST['kor']) && isset($_POST['pid']) && isset($_POST['bump'])) {
     
     $rajt = $_POST['rajt'];
     $nev = $_POST['nev'];

@@ -1,0 +1,55 @@
+Simple Metro PHP Gallery (SMPG)
+http://metro.windowswiki.info/smpg/
+
+Simple Metro PHP Gallery (SMPG) is a leightweight, easy to use gallery
+script inspired by the Metro UI with support for .PNG, .JPG and .GIF image
+files. It generates thumbnails for faster loading times and uses a slightly
+modified version of the Lightbox 2 script by Lokesh Dhakar for displaying
+your images. It is also fully HTML5 and CSS3 compliant.
+
+For support issues, bug reports or feature requests, feel free to drop me a
+mail at admin@windowswiki.info.
+
+Requirements
+
+    A web server capable of running PHP 5 scripts with the PHP GD Library
+    installed.
+
+Usage
+
+    Upload all files to your webserver and put your photo albums inside the
+    galleries folder. SMPG automatically creates thumbnails for your images
+    — in order to do that, you must set write permissions (CHMOD 0777) to
+    the galleries folder and each of its subfolders.
+
+Known issues
+
+    Album (folder) or image (file) names containing special characters are
+    not yet supported. This will be fixed in the next release.
+
+Version history
+
+    v1.5.130425    Released on April 25, 2013
+                       Thumbnails have the aspect ratio of the original
+                       image now.
+
+    v1.4.130313    Released on March 13, 2013
+                       Fixed a bug where you could see thumbnail cache files.
+
+    v1.3.120819    Released on August 19, 2012
+                       Fixed a bug where you could see the contents of the
+                       root directory.
+
+    v1.2.120816    Released on August 16, 2012
+                       Refined the look of the Lightbox part of SMPG.
+
+    v1.1.120815    Released on August 15, 2012
+                       Fixed some bugs relating to the thumbnail creation.
+
+    v1.0.120811    Released on August 11, 2012
+                       Initial release.
+
+
+Simple Metro PHP Gallery is is licensed under a Creative Commons
+Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+For more info see: http://creativecommons.org/licenses/by-nc-sa/3.0/
